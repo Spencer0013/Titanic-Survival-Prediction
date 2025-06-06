@@ -3,3 +3,7 @@
 
 # Force Jupyter notebooks to use LF only
 *.ipynb text eol=lf
+
+# Keep JSON and TSV files (including CatBoost’s metadata) using LF only
+*.json   text eol=lf
+*.tsv    text eol=lf
