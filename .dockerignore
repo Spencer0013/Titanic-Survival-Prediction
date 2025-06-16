@@ -1,0 +1,26 @@
+__pycache__
+*.pyc
+.env
+.git
+.vscode
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+env/
+venv/
+
+# Ignore dataset files if any
+data/
+datasets/
+
+# Ignore Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Git folder
+.git/
+
+# Ignore any other big folders/files you don’t want in image
