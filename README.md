@@ -1,5 +1,5 @@
 ### Titanic Survival Prediction 🚢
-https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/800px-RMS_Titanic_3.jpg
+https://ychef.files.bbci.co.uk/624x351/p0hqh71l.jpg
 
 # Overview
 This end-to-end machine learning project predicts Titanic passenger survival using a comprehensive pipeline from data ingestion to model deployment. The solution features:
