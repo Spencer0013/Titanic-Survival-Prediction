@@ -1,5 +1,9 @@
-### Titanic Survival Prediction 🚢
-https://ychef.files.bbci.co.uk/624x351/p0hqh71l.jpg
+# 🚢 Titanic Survival Prediction
+
+![Titanic Banner](https://ychef.files.bbci.co.uk/624x351/p0hqh71l.jpg)
+
+## 🔗 Deployment
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://drive.google.com/file/d/1yerVKIuXvvu2JPkuQNGY9H2HAPlrK9bH/view?usp=sharing) 
 
 # Overview
 This end-to-end machine learning project predicts Titanic passenger survival using a comprehensive pipeline from data ingestion to model deployment. The solution features:
