@@ -1,240 +1,89 @@
-<<<<<<< HEAD
-# Titanic Survival Prediction System
+### Titanic Survival Prediction 🚢
+https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/800px-RMS_Titanic_3.jpg
 
-![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
-![CatBoost](https://img.shields.io/badge/CatBoost-1.2-green)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.32-orange)
+# Overview
+This end-to-end machine learning project predicts Titanic passenger survival using a comprehensive pipeline from data ingestion to model deployment. The solution features:
 
-## Overview
-An end-to-end machine learning solution that predicts passenger survival probabilities from the Titanic disaster. The project demonstrates full ML pipeline implementation from data preprocessing to web application deployment.
+- Automated pipeline with data ingestion, transformation, and model training
 
-## Key Features
-- **CatBoost implementation**: Gradient boosting algorithm for classification
-- **Feature engineering**: Custom preprocessing pipeline
-- **Dockerized deployment**: Containerized application
-- **CI/CD pipeline**: Automated testing and deployment
-- **Streamlit UI**: Interactive web interface
+- Feature engineering extracting titles and ticket prefixes from raw data
 
+- Hyperparameter tuning using GridSearchCV across 8 classifiers
 
-## Technical Implementation
+- Interactive web interface built with Streamlit
 
-### 1. Data Processing
-- Comprehensive feature engineering (`feature_engineering.py`)
-- Missing value handling (Age, Cabin, Embarked)
-- Title extraction from passenger names
-- Family size calculation
-- Categorical feature encoding
+- Industry-standard architecture with modular components
 
-### 2. Modeling
-- **Algorithm**: CatBoostClassifier
-- **Validation**: Cross-validation
-- **Feature importance**: Native CatBoost feature ranking
+- CI/CD Pipeline with GitHub Actions for automated Docker builds
 
-### 3. Deployment
-- **Web framework**: Streamlit
-- **Containerization**: Docker
-- **Cloud deployment**: Azure via GitHub Actions CI/CD
-- **Version control**: Model and code versioning
+- Azure deployment for production hosting
 
-## Setup Instructions
 
-### Local Installation
+## Features
 
-git clone https://github.com/Spencer0013/Titanic-Survival-Prediction.git
-cd Titanic-Survival-Prediction
-pip install -r requirements.txt
-streamlit run app.py
+# 🛠️ Data Transformation
 
+- Title extraction from passenger names (Mr, Mrs, Dr, etc.)
 
-## Docker Deployment 
-docker build -t titanic-predictor .
-docker run -p 8501:8501 titanic-predictor
+- Ticket prefix parsing from complex ticket numbers
 
-# Usage
-The web application allows users to input passenger details and receive survival predictions through an intuitive interface.
+- Family size calculation combining SibSp and Parch
 
-# CI/CD Pipeline
-- Automated Docker builds on push to main branch
+# Automated preprocessing:
 
-- Azure Container Registry integration
+- Median imputation for numerical features
 
-- Continuous deployment to Azure App Service
+- One-hot encoding for categorical features
 
-# Development Roadmap
+- Standard scaling for all features
 
-- Enhance test coverage
 
-- Add monitoring capabilities
+## 🤖 Model Training
+# 8 Classifiers evaluated:
 
-- Implement model version comparison
+- Random Forest
 
+- XGBoost
 
+- CatBoost
 
+- Logistic Regression
 
+- Gradient Boosting
 
-=======
-## Titanic Survival Prediction Project
+- AdaBoost
 
-This production-ready machine learning solution addresses the  Kaggle Titanic competition, demonstrating a complete ML Ops implementation from raw data ingestion to deployment-ready prediction interface. The system delivers 83.2% accuracy in passenger survival prediction through optimized feature engineering and model selection, providing a template for enterprise-grade binary classification systems in risk assessment, customer outcome prediction, and resource prioritization scenarios.
+- Decision Trees
 
-## 🧩 Project Overview
-This project implements a complete ML pipeline for predicting Titanic passenger survival. The system:
+- K-Nearest Neighbors
 
-Ingests and preprocesses passenger data
+- Hyperparameter tuning with GridSearchCV
 
-Performs feature engineering and transformation
+- Best model selection based on test accuracy
 
-Trains multiple classifiers with hyperparameter tuning
+- Artifact persistence (preprocessor and model)
 
-Provides an interactive web interface for predictions
 
-Automatically deploys to Azure via GitHub Actions
+## 🖥️ Streamlit Web App
+- Train/retrain pipeline with one click
 
-## Key Features
+- Interactive prediction interface with input controls
 
-End-to-end ML pipeline from data ingestion to prediction
+- Survival probability display with visual feedback
 
-Streamlit-based web application
+- Artifact management for reproducible results
 
-Azure container deployment with CI/CD
+## ☁️ Azure Deployment
+- Docker containerization for consistent environments
 
-Hyperparameter optimization with GridSearchCV
+- GitHub Actions CI/CD for automated builds
 
-Feature engineering for passenger data
+- Azure Container Registry for image storage
 
-Model comparison and selection
+- Azure Web App for production hosting
 
-## Datset
 
-Features:
-
-Passenger demographics (age, sex, class)
-
-Ticket information
-
-Family relationships
-
-Embarkation port
-
-## Feature Engineering:
-
-def extract_title(self, name):
-    match = re.search(r',\s*([^\.]+)\.', name)
-    return match.group(1).strip() if match else 'Missing'
-
-def extract_ticket_prefix(self, ticket):
-    parts = ticket.split()
-    if len(parts) > 1:
-        return parts[0].replace('.', '').replace('/', '').upper()
-    else:
-        return 'None'
-
-## Preprocessing:
-
-Family size calculation (SibSp + Parch)
-
-Title extraction from names
-
-Ticket prefix extraction
-
-Handling missing values
-
-One-hot encoding of categorical features
-
-Standard scaling of numerical features
-
-## ⚙️ ML Pipeline
-
-# 1. Data Ingestion
-
-class DataIngestion:
-    def initiate_data_ingestion(self):
-        df = pd.read_csv('Notebook/Data/train.csv')
-        train_set, test_set = train_test_split(df, test_size=0.2, random_state=42)
-        train_set.to_csv(self.ingestion_config.train_data_path)
-        test_set.to_csv(self.ingestion_config.test_data_path)
-
-# 2. Data Transformation
-class DataTransformation:
-    def initiate_data_transformation(self, train_path, test_path):
-        for df in [train_df, test_df]:
-            df['family'] = df['SibSp'] + df['Parch']
-            df['ticket_update'] = df['Ticket'].apply(self.extract_ticket_prefix)
-            df['title'] = df['Name'].apply(self.extract_title)
-        
-        preprocessing_obj = ColumnTransformer(transformers=[
-            ("num_pipeline", num_pipeline, numerical_columns),
-            ("cat_pipeline", cat_pipeline, categorical_columns)
-        ])
-
-## 3. Model Training
-
-class ModelTrainer:
-    def initiate_model_trainer(self, train_array, test_array):
-        models = {
-            "Random Forest": RandomForestClassifier(random_state=42),
-            "Decision Tree": DecisionTreeClassifier(random_state=42),
-            "Gradient Boosting": GradientBoostingClassifier(random_state=42),
-            "Logistic Regression": LogisticRegression(max_iter=1000, random_state=42),
-            "XGBClassifier": XGBClassifier(random_state=42),
-            "CatBoost Classifier": CatBoostClassifier(verbose=False, random_seed=42),
-            "AdaBoost Classifier": AdaBoostClassifier(random_state=42),
-            "K-Nearest Neighbors": KNeighborsClassifier(),
-        }
-        
-        model_report: dict = evaluate_models(X_train, y_train, X_test, y_test, models, params)
-
-# 🌐 Web Application
-
-# Streamlit app interface
-mode = st.sidebar.radio("Mode", ["Train Model", "Predict Passenger"])
-
-if mode == "Train Model":
-    if st.button("Run Full Pipeline"):
-        preproc_path, model_path, test_acc = run_pipeline()
-        st.success(f"✅ Pipeline complete. Test accuracy = {test_acc:.4f}")
-
-elif mode == "Predict Passenger":
-    pclass = st.selectbox("Ticket Class (Pclass)", [1, 2, 3])
-    sex = st.selectbox("Sex", ["male", "female"])
-    age = st.number_input("Age", 0.0, 100.0, 30.0)
-    # ... additional inputs ...
-    
-    if st.button("Predict Survival"):
-        features = preprocessor.transform(single_df)
-        pred_class = model.predict(features)[0]
-        pred_proba = model.predict_proba(features)[0][1]
-        
-        if pred_class == 1:
-            st.success(f"✅ Survived (probability = {pred_proba:.2f})")
-        else:
-            st.error(f"❌ Did Not Survive (probability = {1 - pred_proba:.2f})")
-
-# Features:
-
-- Train/Retrain Pipeline: Full ML pipeline execution
-
-- Passenger Prediction: Interactive survival prediction
-
-- Probability Display: Visual confidence scores
-
-- Feature Engineering: Automatic title and ticket extraction
-
-- Responsive Design: Mobile-friendly interface
-
-# Deployment Architecture:
-
-- GitHub Actions: Triggers on push to main branch
-
-- Azure Container Registry (ACR): Stores Docker images
-
-- Azure Web App: Hosts containerized application
-
-- Production Slot: Zero-downtime deployments
-
-# 🚀 Installation & Execution
-
-Local Development:
+## Setup
 
 # Clone repository
 git clone https://github.com/yourusername/titanic-survival-prediction.git
@@ -243,64 +92,64 @@ cd titanic-survival-prediction
 # Install dependencies
 pip install -r requirements.txt
 
-# Run Streamlit application
+# Install local package
+pip install -e .
+
+# Run locally
 streamlit run app.py
 
-# Azure Deployment:
+## Deployment
 
-Fork repository
+# Azure Deployment via GitHub Actions
 
-Create Azure resources:
+The project includes a CI/CD pipeline that automatically builds and deploys to Azure:
 
-Container Registry
+On push to main branch:
 
-Web App for Containers
+- Docker image is built using the Dockerfile
 
-Configure GitHub Secrets:
+- Image is pushed to Azure Container Registry
 
-AZURE_CR_USERNAME
+- Application is deployed to Azure Web App
 
-AZURE_CR_PASSWORD
+# Pipeline Steps:
 
-AZURE_PUBLISH_PROFILE
+name: Build and deploy container app to Azure Web App - testsurvival
 
-Push changes to trigger deployment
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - Docker setup and build
+    - Login to Azure Container Registry
+    - Push container image to registry
 
-## 🔍 Model Performance
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - Deploy to Azure Web App using publish profile
 
-models = {
-    "Random Forest": RandomForestClassifier(),
-    "Decision Tree": DecisionTreeClassifier(),
-    "Gradient Boosting": GradientBoostingClassifier(),
-    "Logistic Regression": LogisticRegression(),
-    "XGBClassifier": XGBClassifier(),
-    "CatBoost Classifier": CatBoostClassifier(),
-    "AdaBoost Classifier": AdaBoostClassifier(),
-    "K-Nearest Neighbors": KNeighborsClassifier(),
-}
+## Results
 
-## Hyperparameter Tuning:
+The model achieves ~82-85% accuracy on test data based on Titanic passenger characteristics. Key influential features:
 
-Each model uses GridSearchCV for optimization
+- Passenger gender
 
-## Evaluation:
+- Ticket class (Pclass)
 
-Model selection based on test accuracy
+- Age
 
-Best model saved as artifacts/model.pkl
+- Family size
 
-Accuracy displayed in web interface after training
+- Extracted title (Mr, Mrs, Master)
 
-## 📚 References
+- Fare paid
 
-Kaggle Titanic Competition
+# Contribution
 
-Streamlit Documentation
+Contributions are welcome! Please open an issue first to discuss proposed changes.
 
-Azure Web Apps Documentation
+# License
 
-Scikit-learn Documentation
-
-GitHub Actions Documentation
-
->>>>>>> 823399ea5bb0205451f54c6d4cb263071c383786
+This project is licensed under the MIT License - see the LICENSE file for details.
