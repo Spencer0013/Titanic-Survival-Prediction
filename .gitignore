@@ -138,6 +138,9 @@ venv.bak/
 myenv/
 .artifacts/
 artifacts
+survive
+survive/
+.survive
 
 
 # Spyder project settings
