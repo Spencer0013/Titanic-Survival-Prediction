@@ -23,6 +23,12 @@ This end-to-end machine learning project predicts Titanic passenger survival usi
 - Azure deployment for production hosting
 
 
+## 🗂️ Dataset
+
+- Not Survived: 549
+- Survived : 342
+
+
 ## Features
 
 # 🛠️ Data Transformation
@@ -33,18 +39,6 @@ This end-to-end machine learning project predicts Titanic passenger survival usi
 
 - Family size calculation combining SibSp and Parch
 
-# Dataset
-
-- **survival**: Survival → 0 = No, 1 = Yes  
-- **pclass**: Ticket class → 1 = 1st, 2 = 2nd, 3 = 3rd  
-- **sex**: Sex  
-- **age**: Age in years  
-- **sibsp**: Number of siblings/spouses aboard the Titanic  
-- **parch**: Number of parents/children aboard the Titanic  
-- **ticket**: Ticket number  
-- **fare**: Passenger fare  
-- **cabin**: Cabin number  
-- **embarked**: Port of Embarkation → C = Cherbourg, Q = Queenstown, S = Southampton 
 
 # Automated preprocessing:
 
